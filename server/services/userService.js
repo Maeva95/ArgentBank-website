@@ -2,7 +2,7 @@ const User = require('../database/models/userModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-module.exports.createUser = async serviceData => {
+module.exports.createUser = async serviceData => { // API for Signup(/user/signup)
   console.log(serviceData)
   try {
     const user = await User.findOne({ email: serviceData.email })
@@ -29,7 +29,7 @@ module.exports.createUser = async serviceData => {
   }
 }
 
-module.exports.getUserProfile = async serviceData => {
+module.exports.getUserProfile = async serviceData => { // API for fetching a user profile(user/profile)
   try {
     const jwtToken = serviceData.headers.authorization.split('Bearer')[1].trim()
     const decodedJwtToken = jwt.decode(jwtToken)
@@ -46,7 +46,7 @@ module.exports.getUserProfile = async serviceData => {
   }
 }
 
-module.exports.loginUser = async serviceData => {
+module.exports.loginUser = async serviceData => { // API for Login (/user/login)
   try {
     const user = await User.findOne({ email: serviceData.email })
 
@@ -73,7 +73,7 @@ module.exports.loginUser = async serviceData => {
   }
 }
 
-module.exports.updateUserProfile = async serviceData => {
+module.exports.updateUserProfile = async serviceData => { // API for updating a user profile (/user/profile)
   try {
     const jwtToken = serviceData.headers.authorization.split('Bearer')[1].trim()
     const decodedJwtToken = jwt.decode(jwtToken)

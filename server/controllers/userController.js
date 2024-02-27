@@ -1,6 +1,6 @@
 const userService = require('../services/userService')
 
-module.exports.createUser = async (req, res) => {
+module.exports.createUser = async (req, res) => { // API for signup (/user/signup)
   let response = {}
 
   try {
@@ -17,7 +17,7 @@ module.exports.createUser = async (req, res) => {
   return res.status(response.status).send(response)
 }
 
-module.exports.loginUser = async (req, res) => {
+module.exports.loginUser = async (req, res) => { // API for login (/user/login)
   let response = {}
 
   try {
