@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 import React from 'react'
 import HeroImage from '../../components/HeroImage'
-import './style.css'
+import '../Home/style.css'
 import Feature from '../../components/Feature'
 import ChatIcon from '../../assets/images/icon-chat.png'
 import MoneyIcon from '../../assets/images/icon-money.png'
@@ -9,7 +9,7 @@ import SecurityIcon from '../../assets/images/icon-security.png'
 
 const Home = () => {
   return (
-    <>
+    <main>
         <HeroImage />
         <section className='features'>
             <h2 className='sr-only'>Features</h2>
@@ -29,7 +29,7 @@ const Home = () => {
                 text={`We use top of the line encryption to make sure your data and money is always safe.`}
             />
         </section>
-    </>
+    </main>
   )
 }
 

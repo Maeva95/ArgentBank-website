@@ -1,13 +1,13 @@
 import React from 'react'
 import Logo from '../../assets/images/argentBankLogo.png'
-import './style.css'
+import '../Header/style.css'
 import { NavLink } from 'react-router-dom'
 
 const Header = () => {
   return (
     <header>
         <nav className="main-nav">
-            <NavLink to='./home' className="main-nav-logo">
+            <NavLink to='./' className="main-nav-logo">
                 <img
                 className="main-nav-logo-image"
                 src={`${Logo}`}

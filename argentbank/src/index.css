@@ -14,7 +14,7 @@ body, #root {
   min-height: 100vh;
   box-sizing: border-box;
 }
-
+/*
 .main {
   flex: 1;
 }
@@ -26,16 +26,16 @@ body, #root {
 .sr-only {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
-  -webkit-clip-path: inset(50%) !important;
-  clip-path: inset(50%) !important; /* 2 */
-  height: 1px !important;
+  /* -webkit-clip-path: inset(50%) !important; */
+  /* clip-path: inset(50%) !important; /* 2 */
+  /* height: 1px !important;
   margin: -1px !important;
   overflow: hidden !important;
   padding: 0 !important;
   position: absolute !important;
   width: 1px !important;
-  white-space: nowrap !important; /* 3 */
-}
+  white-space: nowrap !important; 3 */
+/* } 
 
 .main-nav {
   display: flex;
@@ -202,9 +202,9 @@ body, #root {
 .input-wrapper input {
   padding: 5px;
   font-size: 1.2rem;
-}
+} */
 
-.footer {
+/* .footer {
   display: flex;
   justify-content: center;
   border-top: 2px solid #ccc;
@@ -214,7 +214,7 @@ body, #root {
 .footer-text {
   margin: 0;
   padding: 0;
-}
+}  */
 
 .account {
   display: flex;

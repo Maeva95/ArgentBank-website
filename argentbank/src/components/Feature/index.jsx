@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 import React from 'react'
-import './style.css'
+import '../Feature/style.css'
 
 const Feature = ({icon, title, text}) => {
   return (
