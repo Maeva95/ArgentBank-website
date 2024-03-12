@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../Profile/style.css'
 import Account from '../../components/Account'
 import { useSelector,  useDispatch } from 'react-redux'
@@ -6,26 +6,19 @@ import { getProfileInfo } from '../../App/services/callApi'
 
 const Profile = () => {
   const dispatch = useDispatch()
-  const userInfos = useSelector((state) => state.user)
-  const tokenStorage = localStorage.getItem('token')
-  if (tokenStorage) {
-    try {
-      dispatch(getProfileInfo(tokenStorage))
-    } catch (error) {
-      console.log(`une erreur s'est produit${error}`)
-    }
-    
-  }
-  // useEffect(() => {
-  //   const tokenStorage = JSON.parse(localStorage.getItem('token'))
-  //   console.log(tokenStorage)
-  //   dispatch(getProfileInfo(tokenStorage))
-  // }, [dispatch])
-  
+  const userToken = useSelector((state) => state.auth.token)
+  const userInfos = useSelector((state) => state.profile)
+  const { firstName, lastName, userName } = userInfos
+
+  useEffect(() => {
+    dispatch(getProfileInfo(userToken))
+  }, [dispatch, userToken])
+
+
   return (
     <main className='main bg-dark'>
       <div className='main-header'>
-        <h1>Welcome back <br />{userInfos?.firstName} {userInfos?.lastName}</h1>
+        <h1>Welcome back <br />{firstName} {lastName} {userName}</h1>
         <button className='edit-button'>Edit Name</button>
       </div>
       <h2 className='sr-only'>Accounts</h2>

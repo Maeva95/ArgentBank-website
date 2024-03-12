@@ -8,6 +8,7 @@ export const signUp = createAsyncThunk(
     async (userLog) => {
         const res = await Axios.post(BASE_URL + 'login', (userLog))
         const token = res.data.body.token
+        console.log('Token:' + token)
         localStorage.setItem('token', JSON.stringify(token))
         return token
     }
@@ -16,16 +17,27 @@ export const signUp = createAsyncThunk(
 export const getProfileInfo = createAsyncThunk(
     'profile',
     async (token) => {
-        const res = await Axios.post(BASE_URL + 'profile', {
-            headers: {
-                Authorization: `${token}`
-            }
+        try {
+            const res = await Axios.post(BASE_URL + 'profile', {}, {
+                headers: {
+                    'Content-type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
         })
-        const result = res.data.body
-        console.log(res.data)
-        console.log(res.status)
-        console.log(res.headers)
-        return result
+            const result = res.data.body
+            console.log(result)
+            localStorage.setItem('userInfos', JSON.stringify(result))
+            return result    
+        } catch (error) {
+            if (error.response) {
+                console.log(error.response);
+                console.log("server responded");
+            } else if (error.request) {
+                console.log("network error");
+            } else {
+                console.log(error);
+            }
+        }
     }
 )
 

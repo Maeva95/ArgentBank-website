@@ -1,13 +1,16 @@
-import {createSlice} from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit"
+import { getProfileInfo } from "../services/callApi"
 
-export const userSlice = createSlice({
+const currentState = {}
+const userSlice = createSlice({
     name: 'user',
-    initialState: {},
-    reducers: {
-        setUser: (currentState, action) => {
-            const loginUser = [...currentState, action.payload]
-            return loginUser
-        }
-        
+    initialState: currentState,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder.addCase(getProfileInfo.fulfilled, (state, action) => {
+            const userInfos = action.payload
+            return userInfos
+        })
     }
 })
+export default userSlice.reducer

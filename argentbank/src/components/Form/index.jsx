@@ -12,18 +12,23 @@ const Form = () => {
   const navigate = useNavigate()
 
   const [remerberMe, setRememberMe] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+
   const handleSubmitLogin = (e) => {
     e.preventDefault()
     let userLog = {email, password}
     dispatch(signUp(userLog))
+    setErrorMessage('')
     navigate('/profile')
-    
+
     // si check "Remember me", ajout de l'adresse mail dans le local storage 
     if (remerberMe) {
       const storageEmail = localStorage.setItem('email', email)
       return storageEmail
     }
+  
   }
+
   const checkedRememberMe = () => {
     setRememberMe(!remerberMe)
   }
@@ -42,7 +47,10 @@ const Form = () => {
             <label htmlFor='remember-me'>Remember me</label>
             <input type="checkbox" id='remember-me' checked={remerberMe} onChange={checkedRememberMe}/>
         </div>
-        <button type='submit' className='sign-in-button'>Sign In</button>
+        <button type='submit' className='sign-in-button' onClick={handleSubmitLogin}>Sign In</button>
+        {errorMessage &&
+          <div className='error-message'>{errorMessage}</div>
+        }
     </form>
   )
 }
