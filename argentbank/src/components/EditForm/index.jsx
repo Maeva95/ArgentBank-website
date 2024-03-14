@@ -3,10 +3,11 @@ import './style.css'
 import { useSelector } from 'react-redux'
 // import { changeUserName } from '../../App/services/callApi'
 import { useEditUsernameMutation } from '../../App/services/api.services'
+import { tokenUser } from '../../App/selectors'
 
 export const EditForm = ({fieldUserName, firstName, lastName, setShow}) => {
 
-    const userToken = useSelector((state) => state.auth.token)
+    const userToken = useSelector(tokenUser)
     const [userName, setUsername] = useState('')
 
     const [editUserName, {isLoading}] = useEditUsernameMutation()

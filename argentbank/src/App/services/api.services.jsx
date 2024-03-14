@@ -22,20 +22,6 @@ export const argentBankApi = createApi({
                 body: userLog
             }),
         }),
-        // anticipation pour la création de compte
-        signup: builder.mutation({
-            query: ({email, password, firstName, lastName, userName}) => ({
-                url: `signup`,
-                method: 'POST',
-                body: {
-                    email,
-                    password,
-                    firstName,
-                    lastName,
-                    userName
-                }
-            }) 
-        }),
         profile: builder.mutation({
             query: () => ({
                 url: `profile`,
@@ -48,6 +34,20 @@ export const argentBankApi = createApi({
                 url: `profile`,
                 method: 'PUT',
                 body: userName
+            }) 
+        }),
+        // anticipation pour la création de compte
+        signup: builder.mutation({
+            query: ({email, password, firstName, lastName, userName}) => ({
+                url: `signup`,
+                method: 'POST',
+                body: {
+                    email,
+                    password,
+                    firstName,
+                    lastName,
+                    userName
+                }
             }) 
         }),
     }),

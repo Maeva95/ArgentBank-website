@@ -20,15 +20,8 @@ const userSlice = createSlice({
     name: 'user',
     initialState: currentState,
     reducers: {
-        logout: (state) => {
+        clearState: (state) => {
             state.infos = {}
-            localStorage.clear()
-        },
-        getInfos: (state, action) => {
-            state = {...state}
-        },
-        cancelEdit: (state, action) => {
-            state = {...state}
         }
     },
     extraReducers: (builder) => {
@@ -44,26 +37,8 @@ const userSlice = createSlice({
                 state.infos = payload.body
             }
         )
-        // builder
-        // .addCase(getProfileInfo.pending, (state, action) => {
-        //     state.loading = true
-        // })
-        // .addCase(getProfileInfo.fulfilled, (state, action) => {
-        //     state.loading = false
-        //     state.infos = action.payload
-        // })
-        // .addCase(getProfileInfo.rejected, (state, action) => {
-        //     state.error = action.error
-        // })
-        // modification username
-
-        // .addCase(changeUserName.fulfilled, (state, {payload}) => {
-        //     state.infos = {...state, payload}
-        // })
-        // .addCase(changeUserName.rejected, (state, action) => {
-        //     state.error = action.error
-        // })
     }
 })
-export const {logout, getInfos, cancelEdit}  = userSlice.actions
+
+export const {clearState} = userSlice.actions
 export default userSlice.reducer

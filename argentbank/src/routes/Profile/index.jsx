@@ -6,38 +6,34 @@ import { useSelector } from 'react-redux'
 // import { getProfileInfo } from '../../App/services/callApi'
 import { EditForm } from '../../components/EditForm'
 import { useProfileMutation } from '../../App/services/api.services'
+import { userInfos } from '../../App/selectors'
 
 const Profile = () => {
   // const dispatch = useDispatch()
 
   const [show, setShow] = useState(false)
 
-  const userToken = useSelector((state) => state.auth.token)
-  const userInfos = useSelector((state) => state.user.infos)
-  const { firstName, lastName, userName } = userInfos 
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     dispatch(getProfileInfo(userToken))
-  //   }, 2000)
-  // }, [dispatch, userToken])
-
-  const handleEditForm = () => {
-    setShow(!show)
-  }
+  const user = useSelector(userInfos)
+  const { firstName, lastName, userName } = user 
+  
   const [profile, {isLoading}] = useProfileMutation()
 
   useEffect(() => {
     try {
-      profile(userToken)
+      profile()
     } catch (error) {
       console.error(error)
     }
-  }, [profile, userToken])
+  }, [profile])
 
   if(isLoading) {
     return <div>...en cours de chargement</div>
   }
+
+  const handleEditForm = () => {
+    setShow(!show)
+  }
+
 
   return (
     <main className='main bg-dark'>
