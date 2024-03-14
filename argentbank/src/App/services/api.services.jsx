@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-// pour palier à l'utilisation daxios
 export const argentBankApi = createApi({
     reducerPath: 'argentBankApi',
     baseQuery: fetchBaseQuery({
@@ -14,13 +13,14 @@ export const argentBankApi = createApi({
             return headers
         },
     }),
+    tagTypes: ['auth', 'user'],
     endpoints: (builder) => ({
         login: builder.mutation({
-            query: ({email, password}) => ({
+            query: (userLog) => ({
                 url: `login`,
                 method: 'POST',
-                body: {email, password}
-            }) 
+                body: userLog
+            }),
         }),
         // anticipation pour la création de compte
         signup: builder.mutation({
@@ -36,29 +36,23 @@ export const argentBankApi = createApi({
                 }
             }) 
         }),
-        // profile: builder.query({
-        //     query: ({id, email, password, firstName, lastName, userName}) => ({
-        //         url: `profile/${id}`,
-        //         method: 'POST',
-        //         body: {
-        //             id,
-        //             email,
-        //             password,
-        //             firstName,
-        //             lastName,
-        //             userName
-        //         }
-        //     }) 
-        // }),
+        profile: builder.mutation({
+            query: () => ({
+                url: `profile`,
+                method: 'POST',
+                body: {}
+            }) 
+        }),
         editUsername: builder.mutation({
-            query: (userName, {id}) => ({
-                url: `profile/${id}`,
+            query: ({...userName}) => ({
+                url: `profile`,
                 method: 'PUT',
-                body: { userName }
+                body: userName
             }) 
         }),
     }),
 })
 
-export const { useLoginMutation, useSignupMutation, useProfileMutation, useEditUsernameMutation } = argentBankApi
+export const {useLoginMutation, useProfileMutation, useEditUsernameMutation} =argentBankApi
+// export const { useLoginMutation, useSignupMutation, useProfileMutation, useEditUsernameMutation } = argentBankApi
 

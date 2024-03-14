@@ -1,12 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit"
 import authSliceReducer from "./slices/auth.slice"
 import userSliceReducer from "./slices/userSlice"
+import { argentBankApi } from "./services/api.services"
+export * from './slices/userSlice'
 
 export const store = configureStore({
     reducer: {
+        [argentBankApi.reducerPath]: argentBankApi.reducer,
         auth: authSliceReducer,
-        profile: userSliceReducer
+        user: userSliceReducer
     },
-    devTools: true,
+    middleware: getDefaultMiddleware =>
+        getDefaultMiddleware().concat(argentBankApi.middleware),
+    devTools: true
 })
 
