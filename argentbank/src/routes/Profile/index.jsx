@@ -47,7 +47,7 @@ const Profile = () => {
         {show &&
           (
             <EditForm 
-              userName={userName}
+              fieldUserName={userName}
               firstName={firstName}
               lastName={lastName}
               setShow={handleEditForm}

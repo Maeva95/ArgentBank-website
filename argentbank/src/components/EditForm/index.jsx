@@ -1,27 +1,32 @@
 import React, { useState } from 'react'
 import './style.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { changeUserName } from '../../App/services/callApi'
+import { useSelector } from 'react-redux'
+// import { changeUserName } from '../../App/services/callApi'
+import { useEditUsernameMutation } from '../../App/services/api.services'
 
-export const EditForm = ({userName, firstName, lastName, setShow}) => {
+export const EditForm = ({fieldUserName, firstName, lastName, setShow}) => {
 
-    const token = useSelector((state) => state.user.token)
-    const dispatch = useDispatch()
-    const [username, setUsername] = useState('')
+    const userToken = useSelector((state) => state.auth.token)
+    const [userName, setUsername] = useState('')
+
+    const [editUserName, {isLoading}] = useEditUsernameMutation()
 
     const handleEditUserName = (e) => {
         e.preventDefault()
-        let editUserName = {username}
-        dispatch(changeUserName(token, editUserName))
+        let editUsername = {userName}
+        editUserName(editUsername, userToken)
     }
 
+    if(isLoading) {
+        return <div>...en cours de chargement</div>
+    }
 
     return (
         <div className='editForm'>
             <h1>Edit user info</h1>
             <form method='post' onSubmit={handleEditUserName}>
                 <label htmlFor="userName">User name
-                    <input type="text" id='userName' placeholder={userName} onChange={(e) => setUsername(e.currentTarget.value)}/>
+                    <input type="text" id='userName' placeholder={fieldUserName} onChange={(e) => setUsername(e.currentTarget.value)}/>
                 </label>
                 <label htmlFor="firstName">First Name
                     <input type="text" id='firstName' placeholder={firstName} disabled/>

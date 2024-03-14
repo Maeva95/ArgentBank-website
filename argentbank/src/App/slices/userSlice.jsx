@@ -38,6 +38,12 @@ const userSlice = createSlice({
                 state.infos = payload.body
             }
         )
+        builder.addMatcher(
+            argentBankApi.endpoints.editUsername.matchFulfilled,
+            (state, {payload}) => {
+                state.infos = payload.body
+            }
+        )
         // builder
         // .addCase(getProfileInfo.pending, (state, action) => {
         //     state.loading = true

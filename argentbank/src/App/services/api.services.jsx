@@ -5,7 +5,7 @@ export const argentBankApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:3001/api/v1/user/',
         prepareHeaders: (headers, { getState }) => {
-            // By default, if we have a token in the store, let's use that for authenticated requests
+            // récupération du token du state pour les endpoints profile et edit
             const token = (getState()).auth.token
             if (token) {
                 headers.set('Authorization', `Bearer ${token}`)
@@ -44,7 +44,7 @@ export const argentBankApi = createApi({
             }) 
         }),
         editUsername: builder.mutation({
-            query: ({...userName}) => ({
+            query: (userName) => ({
                 url: `profile`,
                 method: 'PUT',
                 body: userName
@@ -54,5 +54,4 @@ export const argentBankApi = createApi({
 })
 
 export const {useLoginMutation, useProfileMutation, useEditUsernameMutation} =argentBankApi
-// export const { useLoginMutation, useSignupMutation, useProfileMutation, useEditUsernameMutation } = argentBankApi
 
