@@ -26,15 +26,19 @@
 
 .main-nav a.router-link-exact-active {
   color: #42b983;
+  text-align: center;
 }
 
 .main-nav-item {
   text-decoration: none;
   margin-right: 0.5rem;
+  color: #00BC77;
 }
 
-.main-nav-item .fa{
+.main-nav-item .fa-user-circle{
   margin-right: 7px;
+  color: #2c3e50;
+  font-size: 26px;
 } 
 .main-nav-item:hover {
   text-decoration: underline;
@@ -48,4 +52,36 @@
 .main-nav-logo-image {
   max-width: 100%;
   width: 200px;
+}
+
+.main-nav .infos-user {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.main-nav .infos-user-username {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  color: #00BC77;
+}
+
+.main-nav .infos-user .fa {
+  font-size: 26px;
+  color: #00BC77;
+}
+
+.main-nav p {
+  font-size: 18px;
+}
+
+@media (max-width: 720px) {
+  .main-nav .infos-user {
+    gap: 20px;
+  }
+  .main-nav .infos-user .fa {
+    font-size: 18px;
+  }
 }

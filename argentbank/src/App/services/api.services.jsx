@@ -4,6 +4,7 @@ export const argentBankApi = createApi({
     reducerPath: 'argentBankApi',
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:3001/api/v1/user/',
+        timeout: 5000,
         prepareHeaders: (headers, { getState }) => {
             // récupération du token du state pour les endpoints profile et edit
             const token = (getState()).auth.token
@@ -33,23 +34,24 @@ export const argentBankApi = createApi({
             query: (userName) => ({
                 url: `profile`,
                 method: 'PUT',
-                body: userName
+                body: userName,
+                timeout: 5000,
             }) 
         }),
         // anticipation pour la création de compte
-        signup: builder.mutation({
-            query: ({email, password, firstName, lastName, userName}) => ({
-                url: `signup`,
-                method: 'POST',
-                body: {
-                    email,
-                    password,
-                    firstName,
-                    lastName,
-                    userName
-                }
-            }) 
-        }),
+        // signup: builder.mutation({
+        //     query: ({email, password, firstName, lastName, userName}) => ({
+        //         url: `signup`,
+        //         method: 'POST',
+        //         body: {
+        //             email,
+        //             password,
+        //             firstName,
+        //             lastName,
+        //             userName
+        //         }
+        //     }) 
+        // }),
     }),
 })
 

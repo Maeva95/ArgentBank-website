@@ -1,16 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
-// import { getProfileInfo, changeUserName } from "../services/callApi"
 import { argentBankApi } from "../services/api.services"
 
-// const infos = {
-//     email:'',
-//     firstName: '',
-//     lastName: '',
-//     userName: '',
-//     createdAt: '',
-//     updateAt: '',
-//     id: ''
-// }
 const currentState = {
     loading: false,
     infos: {}
@@ -25,16 +15,24 @@ const userSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addMatcher(
+        builder
+        .addMatcher(
             argentBankApi.endpoints.profile.matchFulfilled,
             (state, {payload}) => {
                 state.infos = payload.body
             }
         )
-        builder.addMatcher(
+        .addMatcher(
+            argentBankApi.endpoints.editUsername.matchPending,
+            (state) => {
+                state.loading = true
+            }
+        )
+        .addMatcher(
             argentBankApi.endpoints.editUsername.matchFulfilled,
             (state, {payload}) => {
                 state.infos = payload.body
+                state.loading = false
             }
         )
     }

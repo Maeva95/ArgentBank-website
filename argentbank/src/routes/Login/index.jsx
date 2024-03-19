@@ -1,6 +1,6 @@
 import React from 'react'
 import './style.css'
-import Form from '../../components/Form'
+import Form from '../../components/LoginForm'
 
 const Login = () => {
   return (

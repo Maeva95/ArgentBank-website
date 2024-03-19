@@ -47,3 +47,8 @@
     font-size: 1.2rem;
   }
   
+  .error-message {
+    margin-top: 20px;
+    color: #c90000;
+    font-weight: bold;
+  }

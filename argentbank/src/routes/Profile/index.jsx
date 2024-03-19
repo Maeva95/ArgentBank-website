@@ -2,20 +2,16 @@ import React, { useEffect, useState } from 'react'
 import '../Profile/style.css'
 import Account from '../../components/Account'
 import { useSelector } from 'react-redux'
-// import { useDispatch } from 'react-redux'
-// import { getProfileInfo } from '../../App/services/callApi'
 import { EditForm } from '../../components/EditForm'
 import { useProfileMutation } from '../../App/services/api.services'
 import { userInfos } from '../../App/selectors'
 
+
 const Profile = () => {
-  // const dispatch = useDispatch()
-
   const [show, setShow] = useState(false)
-
   const user = useSelector(userInfos)
-  const { firstName, lastName, userName } = user 
-  
+  const { firstName, lastName } = user 
+
   const [profile, {isLoading}] = useProfileMutation()
 
   useEffect(() => {
@@ -34,21 +30,24 @@ const Profile = () => {
     setShow(!show)
   }
 
-
   return (
     <main className='main bg-dark'>
       <div className='main-header'>
-        <h1>Welcome back <br />{firstName} {lastName}</h1>
-        <button className='edit-button' onClick={handleEditForm}>Edit Name</button>
-        {show &&
+        {show ?
           (
             <EditForm 
-              fieldUserName={userName}
+              fieldUserName={user.userName}
               firstName={firstName}
               lastName={lastName}
               setShow={handleEditForm}
+              onClick = {setShow}
             />
-          ) 
+          ) : (
+            <>
+              <h1>Welcome back <br />{firstName} {lastName}</h1>
+              <button className='edit-button' onClick={handleEditForm}>Edit Name</button>    
+            </>
+          )
         }
       </div>
       <h2 className='sr-only'>Accounts</h2>

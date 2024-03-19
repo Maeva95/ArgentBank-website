@@ -13,7 +13,8 @@ const authSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder.addMatcher(
+        builder
+        .addMatcher(
             argentBankApi.endpoints.login.matchFulfilled,
             (state, {payload}) => {
                 state.token = payload.body.token
@@ -21,10 +22,9 @@ const authSlice = createSlice({
                 state.error = ''
             }
         )
-        builder.addMatcher(
+        .addMatcher(
             argentBankApi.endpoints.login.matchRejected,
             (state, action) => {
-                console.log('Error', action.payload.data.message)
                 state.error = action.payload.data.message
             }
         )
