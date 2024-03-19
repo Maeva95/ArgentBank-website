@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/ArgentBank-website/static/css/main.d71ca13a.css",
+    "main.js": "/ArgentBank-website/static/js/main.478594c1.js",
+    "static/js/453.262c3a3b.chunk.js": "/ArgentBank-website/static/js/453.262c3a3b.chunk.js",
+    "static/media/bank-tree_920.webp": "/ArgentBank-website/static/media/bank-tree_920.072dab143f643d0b4fb3.webp",
+    "static/media/bank-tree_720.webp": "/ArgentBank-website/static/media/bank-tree_720.6b1750ae62aed00cbdd9.webp",
+    "static/media/icon-security.webp": "/ArgentBank-website/static/media/icon-security.7272ce1e0dca058f67f1.webp",
+    "static/media/bank-tree_3.webp": "/ArgentBank-website/static/media/bank-tree_3.e346eb1537e96b2ecc17.webp",
+    "static/media/icon-chat.webp": "/ArgentBank-website/static/media/icon-chat.d87f51bc268298d76fdc.webp",
+    "static/media/argentBankLogo.webp": "/ArgentBank-website/static/media/argentBankLogo.477d2f3d13b7eba6e039.webp",
+    "static/media/icon-money.webp": "/ArgentBank-website/static/media/icon-money.ebd088fbbec6f6f583d2.webp",
+    "static/media/icon-security_720.webp": "/ArgentBank-website/static/media/icon-security_720.cf83ad8a3916cb16ecc8.webp",
+    "static/media/icon-money_720.webp": "/ArgentBank-website/static/media/icon-money_720.bfc7cd0ca6ca3f38e285.webp",
+    "static/media/icon-chat_720.webp": "/ArgentBank-website/static/media/icon-chat_720.26ef40d1fa9ee10da1a4.webp",
+    "index.html": "/ArgentBank-website/index.html",
+    "main.d71ca13a.css.map": "/ArgentBank-website/static/css/main.d71ca13a.css.map",
+    "main.478594c1.js.map": "/ArgentBank-website/static/js/main.478594c1.js.map",
+    "453.262c3a3b.chunk.js.map": "/ArgentBank-website/static/js/453.262c3a3b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d71ca13a.css",
+    "static/js/main.478594c1.js"
+  ]
+}
