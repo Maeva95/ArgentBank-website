@@ -1,36 +1,33 @@
-import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import Header from '../components/Header';
-import Home from '../routes/Home';
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import Layout from '../components/Layout';
+import ErrorPage from '../routes/ErrorPage';
+import Home from '../routes/Home'
 import Login from '../routes/Login';
 import Profile from '../routes/Profile';
-import Footer from '../components/Footer';
 
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path='/ArgentBank-website'
+      element={<Layout/>}
+      errorElement={<ErrorPage/>}
+    >
+      <Route errorElement={<ErrorPage/>}/>
+      <Route index={true} element={<Home/>}/>
+      <Route path='signup' element={<Login/>}/>
+      <Route path='profile' element={<Profile/>}/>
+    </Route>
+  )
+)
 const App = () => {
+  document.title = 'ArgentBank - Banque en ligne'
   return (
     <>
-    <Header />
-        <Routes>
-          <Route 
-            path='/'
-            element={<Home />}  
-          />
-          <Route 
-            path='/signup'
-            element={<Login />}
-          />
-          <Route 
-            path='/profile'
-            element={<Profile />}
-          />
-        </Routes>
-      <Footer />
+      <RouterProvider router={router} />
     </>
-        
-  );
-
+  )
 }
-  
 
 export default App;

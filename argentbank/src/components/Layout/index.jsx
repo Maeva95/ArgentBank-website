@@ -1,12 +1,12 @@
 import React from 'react'
-import Logo from '../../assets/images/argentBankLogo.webp'
-import '../Header/style.css'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { clearState, logout } from '../../App/store'
 import { tokenUser, userInfos } from '../../App/selectors'
+import { clearState, logout } from '../../App/store'
+import Logo from '../../assets/images/argentBankLogo.webp'
+import './style.css'
 
-const Header = () => {
+const Layout = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const userToken = useSelector(tokenUser) 
@@ -16,31 +16,30 @@ const Header = () => {
     dispatch(logout())
     dispatch(clearState())
     localStorage.clear()
-    navigate('/signup')
+    navigate('signup')
   }
-
-
   return (
-    <header>
+    <>
+      <header>
       <nav className="main-nav">
-        <NavLink to='./' className="main-nav-logo">
-            <img
-            className="main-nav-logo-image"
-            src={`${Logo}`}
-            alt="Argent Bank Logo"
-            />
-            <h1 className="sr-only">Argent Bank</h1>
-        </NavLink>
+        <Link to='/ArgentBank-website' className="main-nav-logo">
+          <img
+          className="main-nav-logo-image"
+          src={`${Logo}`}
+          alt="Argent Bank Logo"
+          />
+          <h1 className="sr-only">Argent Bank</h1>
+        </Link>
         {userToken === null? (
-          <NavLink to='./signup' className="main-nav-item">
+          <Link to='signup' className="main-nav-item">
             <i className="fa fa-user-circle"></i>
-          Sign In
-          </NavLink>
+            Sign In
+          </Link>
         ) : (
           <div className='infos-user'>
             <div className='infos-user-username'>
               <p className='main-nav-item'>{userName.userName}</p>
-              <i className="fa fa-user-circle-o" aria-hidden="true"></i>
+              <i className="fa fa-user-circle-o" aria-hidden="true" onClick={() => navigate('profile')}></i>
             </div>
             <div>
               <i className="fa fa-cog" aria-hidden="true"></i>
@@ -52,7 +51,12 @@ const Header = () => {
         )}
       </nav>
     </header>
+    <Outlet/>
+    <footer className="footer">
+      <p className="footer-text">Copyright 2020 Argent Bank</p>
+    </footer>
+    </>
   )
 }
 
-export default Header
+export default Layout

@@ -22,7 +22,7 @@ const Form = () => {
     try {
       await login(userLog)
       if (localStorage.getItem('token')){
-        navigate('/profile')
+        navigate('/ArgentBank-website/profile')
       }
       if (checked) {
         return localStorage.setItem('email', email)
